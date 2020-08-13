@@ -37,7 +37,8 @@ function TestUtils:testOptions()
     introspection_endpoint_auth_method = "client_secret_basic",
     filters = "pattern1,pattern2,pattern3",
     logout_path = "/logout",
-    redirect_after_logout_uri = "/login"
+    redirect_after_logout_uri = "/login",
+    renew_access_token_on_expiry = true
   }, {var = {request_uri = "/path"},
     req = {get_uri_args = function() return nil end}})
 
@@ -52,6 +53,7 @@ function TestUtils:testOptions()
   lu.assertEquals(opts.redirect_uri_path, "/path/")
   lu.assertEquals(opts.logout_path, "/logout")
   lu.assertEquals(opts.redirect_after_logout_uri, "/login")
+  lu.assertEquals(opts.renew_access_token_on_expiry, true)
 
   local expectedFilters = {
     "pattern1",
